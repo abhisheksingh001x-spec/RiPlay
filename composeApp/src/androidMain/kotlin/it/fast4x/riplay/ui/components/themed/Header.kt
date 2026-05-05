@@ -58,7 +58,7 @@ fun Header(
         titleContent = {
             BasicText(
                 text = title,
-                style = typography().xxl.medium,
+                style = typography().m.medium,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 modifier = Modifier.applyIf(!disableScrollingText) { basicMarquee(iterations = Int.MAX_VALUE) }
