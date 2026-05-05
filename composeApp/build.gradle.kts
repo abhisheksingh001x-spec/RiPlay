@@ -435,14 +435,14 @@ android {
     buildTypes {
         debug {
             applicationIdSuffix = ".debug"
-            manifestPlaceholders["appName"] = "RiPlay-Debug"
+            manifestPlaceholders["appName"] = "Abhi Music"
         }
 
         release {
             vcsInfo.include = true
             isMinifyEnabled = true
             isShrinkResources = true
-            manifestPlaceholders["appName"] = "RiPlay"
+            manifestPlaceholders["appName"] = "Abhi Music"
             signingConfig = signingConfigs.getByName("release")
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             multiDexKeepProguard = File("multidex-config.pro")
