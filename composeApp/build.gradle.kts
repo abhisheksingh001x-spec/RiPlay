@@ -157,8 +157,8 @@ android {
         applicationId = "it.fast4x.riplay"
         minSdk = 24
         targetSdk = 36
-        versionCode = 77
-        versionName = "0.7.77"
+        versionCode = 2
+        versionName = "1.0.1"
 
         multiDexEnabled = true
 
