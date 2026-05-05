@@ -30,6 +30,6 @@ jobs:
       - name: Find and Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: RiPlay-Package-Fixed
+          name: Abhi-Music
           # FIX 3: Sahi path jisse APK pakka milega
           path: "**/build/outputs/apk/**/*.apk"
