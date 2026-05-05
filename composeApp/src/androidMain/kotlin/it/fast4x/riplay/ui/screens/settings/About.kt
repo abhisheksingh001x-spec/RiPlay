@@ -8,10 +8,10 @@ import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import it.fast4x.riplay.BuildConfig
@@ -47,27 +47,37 @@ fun About() {
             // 🎵 Title
             BasicText(
                 text = "ABHI MUSIC 🎧",
-                style = typography().xxl,
+                style = TextStyle(
+                    color = Color.White,
+                    fontSize = typography().xxl.fontSize,
+                    fontWeight = typography().xxl.semiBold.fontWeight,
+                    fontFamily = typography().xxl.fontFamily
+                )
             )
 
             Spacer(modifier = Modifier.height(10.dp))
 
+            // 🔢 Version
             BasicText(
                 text = "Version ${BuildConfig.VERSION_NAME}",
-                style = typography().s.secondary,
+                style = typography().s.secondary
             )
 
             Spacer(modifier = Modifier.height(40.dp))
 
-            // 🔥 GLASS CARD
+            // 🔥 Glass Card
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(25.dp))
                     .background(
-                        Color.White.copy(alpha = 0.08f)
+                        Brush.verticalGradient(
+                            listOf(
+                                Color.White.copy(alpha = 0.15f),
+                                Color.White.copy(alpha = 0.05f)
+                            )
+                        )
                     )
-                    .blur(0.5.dp) // slight glass effect
                     .padding(24.dp)
             ) {
 
@@ -95,7 +105,7 @@ fun About() {
 
             BasicText(
                 text = "Enjoy the vibe ✨",
-                style = typography().xs.secondary,
+                style = typography().xs.secondary
             )
         }
     }
