@@ -2,160 +2,101 @@ package it.fast4x.riplay.ui.screens.settings
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicText
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalUriHandler
-import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.draw.blur
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import it.fast4x.riplay.BuildConfig
-import it.fast4x.riplay.R
-import it.fast4x.riplay.enums.NavigationBarPosition
-import it.fast4x.riplay.ui.components.themed.HeaderWithIcon
-import it.fast4x.riplay.ui.styling.Dimensions
 import it.fast4x.riplay.ui.styling.secondary
-import it.fast4x.riplay.utils.colorPalette
-import it.fast4x.riplay.utils.getUpdateDownloadUrl
 import it.fast4x.riplay.utils.typography
 
-
-@ExperimentalAnimationApi
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun About() {
-    val uriHandler = LocalUriHandler.current
-    //val context = LocalContext.current
 
-    Column(
+    Box(
         modifier = Modifier
-            .background(colorPalette().background0)
-            //.fillMaxSize()
-            .fillMaxHeight()
-            .fillMaxWidth(
-                if (NavigationBarPosition.Right.isCurrent())
-                    Dimensions.contentWidthRightBar
-                else
-                    1f
+            .fillMaxSize()
+            .background(
+                Brush.verticalGradient(
+                    colors = listOf(
+                        Color(0xFF0F0F0F),
+                        Color(0xFF1A1A1A),
+                        Color(0xFF000000)
+                    )
+                )
             )
-            .verticalScroll(rememberScrollState())
-            /*
-            .padding(
-                LocalPlayerAwareWindowInsets.current
-                    .only(WindowInsetsSides.Vertical + WindowInsetsSides.End)
-                    .asPaddingValues()
-            )
-
-             */
     ) {
-        HeaderWithIcon(
-            title = stringResource(R.string.about),
-            iconId = R.drawable.information,
-            enabled = false,
-            showIcon = true,
-            modifier = Modifier,
-            onClick = {}
-        )
-        Row(
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically,
+
+        Column(
             modifier = Modifier
                 .fillMaxSize()
+                .padding(24.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
+
+            // 🎵 Title
             BasicText(
-                text = Abhi Music ${BuildConfig.VERSION_NAME} (${BuildConfig.FLAVOR}) 🎧\nDeveloped by Abhi",
-                style = typography().s.secondary,
-
-                )
-        }
-
-        SettingsGroupSpacer()
-
-        SettingsEntryGroupText(title = stringResource(R.string.social))
-
-        SettingsEntry(
-            title = stringResource(R.string.social_telegram),
-            text = stringResource(R.string.social_telegram_info),
-            onClick = {
-                uriHandler.openUri("https://t.me/riplay_app")
-            }
-        )
-
-        SettingsEntry(
-            title = stringResource(R.string.social_reddit),
-            text = stringResource(R.string.social_reddit_info),
-            onClick = {
-                uriHandler.openUri("https://www.reddit.com/r/RiMusicApp/")
-            }
-        )
-
-        SettingsGroupSpacer()
-
-        SettingsEntryGroupText(title = stringResource(R.string.title_official_project_page))
-
-        SettingsEntry(
-            title = stringResource(R.string.social_github),
-            text = stringResource(R.string.view_the_source_code),
-            onClick = {
-                uriHandler.openUri("https://github.com/fast4x/RiPlay")
-            }
-        )
-
-        if (BuildConfig.FLAVOR == "full")
-            SettingsEntry(
-                title = stringResource(R.string.social_github),
-                text = stringResource(R.string.download_latest_version_from_github_you_will_find_the_file_in_the_notification_area_and_you_can_install_by_clicking_on_it),
-                onClick = {
-                    uriHandler.openUri("https://github.com/fast4x/RiPlay/releases/latest")
-                }
+                text = "ABHI MUSIC 🎧",
+                style = typography().xxl,
             )
 
-        SettingsGroupSpacer()
+            Spacer(modifier = Modifier.height(10.dp))
 
-        SettingsEntryGroupText(title = stringResource(R.string.troubleshooting))
+            BasicText(
+                text = "Version ${BuildConfig.VERSION_NAME}",
+                style = typography().s.secondary,
+            )
 
-        SettingsEntry(
-            title = stringResource(R.string.report_an_issue),
-            text = stringResource(R.string.you_will_be_redirected_to_github),
-            onClick = {
-                uriHandler.openUri("https://github.com/fast4x/RiPlay/issues/new?assignees=&labels=bug&template=bug_report.yaml")
+            Spacer(modifier = Modifier.height(40.dp))
+
+            // 🔥 GLASS CARD
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(25.dp))
+                    .background(
+                        Color.White.copy(alpha = 0.08f)
+                    )
+                    .blur(0.5.dp) // slight glass effect
+                    .padding(24.dp)
+            ) {
+
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+
+                    BasicText(
+                        text = "A modern & smooth music experience",
+                        style = typography().s,
+                        textAlign = TextAlign.Center
+                    )
+
+                    Spacer(modifier = Modifier.height(12.dp))
+
+                    BasicText(
+                        text = "Designed & Developed by Abhi ❤️",
+                        style = typography().s.secondary,
+                        textAlign = TextAlign.Center
+                    )
+                }
             }
-        )
 
+            Spacer(modifier = Modifier.height(40.dp))
 
-        SettingsEntry(
-            title = stringResource(R.string.request_a_feature_or_suggest_an_idea),
-            text = stringResource(R.string.you_will_be_redirected_to_github),
-            onClick = {
-                uriHandler.openUri("https://github.com/fast4x/RiPlay/issues/new?assignees=&labels=enhancement&template=feature_request.yaml")
-            }
-        )
-
-//        SettingsGroupSpacer()
-//
-//        Title(
-//            title = stringResource(R.string.contributors)
-//        )
-//
-//        SettingsEntryGroupText(title = "${ countTranslators() } " + stringResource(R.string.translators))
-//        SettingsDescription(text = stringResource(R.string.in_alphabetical_order))
-//        ShowTranslators()
-//
-//        SettingsGroupSpacer()
-//
-//        SettingsEntryGroupText(title = "${ countDevelopers() } " + "Developers / Designers")
-//        SettingsDescription(text = stringResource(R.string.in_alphabetical_order))
-//        ShowDevelopers()
-
-        SettingsGroupSpacer(
-            modifier = Modifier.height(Dimensions.bottomSpacer)
-        )
+            BasicText(
+                text = "Enjoy the vibe ✨",
+                style = typography().xs.secondary,
+            )
+        }
     }
 }
