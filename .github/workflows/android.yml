@@ -8,6 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # FIX 1: Isse music extractor ki saari files download hongi
+          submodules: 'recursive'
+          fetch-depth: 0
 
       - name: set up JDK 21
         uses: actions/setup-java@v4
@@ -16,11 +20,16 @@ jobs:
           distribution: 'corretto'
           cache: gradle
 
+      - name: Grant execute permission
+        run: chmod +x gradlew
+
       - name: Build with Gradle
-        run: ./gradlew :composeApp:assembleDebug --stacktrace
+        # FIX 2: Clean build taaki purana buffering wala cache khatam ho jaye
+        run: ./gradlew clean :composeApp:assembleDebug --stacktrace
 
       - name: Find and Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: RiPlay-Package
-          path: "/build/outputs/apk//*.apk"
+          name: RiPlay-Package-Fixed
+          # FIX 3: Sahi path jisse APK pakka milega
+          path: "**/build/outputs/apk/**/*.apk"
