@@ -242,7 +242,7 @@ fun DefaultUiSettings() {
     disablePlayerHorizontalSwipe = false
     var lastPlayerPlayButtonType by rememberPreference(lastPlayerPlayButtonTypeKey, PlayerPlayButtonType.Rectangular)
     lastPlayerPlayButtonType = PlayerPlayButtonType.Rectangular
-    var colorPaletteName by rememberPreference(colorPaletteNameKey, ColorPaletteName.Dynamic)
+    var colorPaletteName by rememberPreference(colorPaletteNameKey, ColorPaletteName.ModernBlack)
     colorPaletteName = ColorPaletteName.Dynamic
     var colorPaletteMode by rememberPreference(colorPaletteModeKey, ColorPaletteMode.Dark)
     colorPaletteMode = ColorPaletteMode.Dark
