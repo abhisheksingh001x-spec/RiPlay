@@ -11,7 +11,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import it.fast4x.riplay.BuildConfig
@@ -47,12 +46,7 @@ fun About() {
             // 🎵 Title
             BasicText(
                 text = "ABHI MUSIC 🎧",
-                style = TextStyle(
-                    color = Color.White,
-                    fontSize = typography().xxl.fontSize,
-                    fontWeight = typography().xxl.semiBold.fontWeight,
-                    fontFamily = typography().xxl.fontFamily
-                )
+                style = typography().xxl
             )
 
             Spacer(modifier = Modifier.height(10.dp))
@@ -71,12 +65,7 @@ fun About() {
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(25.dp))
                     .background(
-                        Brush.verticalGradient(
-                            listOf(
-                                Color.White.copy(alpha = 0.15f),
-                                Color.White.copy(alpha = 0.05f)
-                            )
-                        )
+                        Color.White.copy(alpha = 0.08f)
                     )
                     .padding(24.dp)
             ) {
@@ -88,7 +77,7 @@ fun About() {
                     BasicText(
                         text = "A modern & smooth music experience",
                         style = typography().s,
-                        textAlign = TextAlign.Center
+                        modifier = Modifier.fillMaxWidth(),
                     )
 
                     Spacer(modifier = Modifier.height(12.dp))
@@ -96,7 +85,7 @@ fun About() {
                     BasicText(
                         text = "Designed & Developed by Abhi ❤️",
                         style = typography().s.secondary,
-                        textAlign = TextAlign.Center
+                        modifier = Modifier.fillMaxWidth(),
                     )
                 }
             }
