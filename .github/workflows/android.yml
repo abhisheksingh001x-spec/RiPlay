@@ -9,7 +9,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          # FIX 1: Isse music extractor ki saari files download hongi
           submodules: 'recursive'
           fetch-depth: 0
 
@@ -24,12 +23,11 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build with Gradle
-        # FIX 2: Clean build taaki purana buffering wala cache khatam ho jaye
-        run: ./gradlew clean :composeApp:assembleDebug --stacktrace
+        # Maine yahan '--no-build-cache' add kiya hai taaki logo aur buffering ka purana data ekdam saaf ho jaye
+        run: ./gradlew clean :composeApp:assembleDebug --stacktrace --no-build-cache
 
       - name: Find and Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: Abhi-Music-2
-          # FIX 3: Sahi path jisse APK pakka milega
+          name: Abhi-Music-3
           path: "**/build/outputs/apk/**/*.apk"
