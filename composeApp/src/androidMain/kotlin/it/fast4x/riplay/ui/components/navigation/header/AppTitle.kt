@@ -62,7 +62,7 @@ private fun AppLogoText( navController: NavController ) {
 
 
     Text(
-        text = "Play",
+        text = "ᴀʙʜɪ ᴍᴜsɪᴄ",
         style = typography().xxl.copy(
             color = colorPalette().text
         ),
