@@ -70,7 +70,7 @@ fun About() {
                 .fillMaxSize()
         ) {
             BasicText(
-                text = "RiPlay ${BuildConfig.VERSION_NAME} (${BuildConfig.FLAVOR}) by fast4x",
+                text = Abhi Music ${BuildConfig.VERSION_NAME} (${BuildConfig.FLAVOR}) 🎧\nDeveloped by Abhi",
                 style = typography().s.secondary,
 
                 )
